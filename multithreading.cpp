@@ -47,6 +47,8 @@ int main(){
 
     thread1.join();
     thread2.join();
+    // findEvenSum(start, end);
+    // findOddSum(start, end);
 
     auto stopTime = high_resolution_clock::now();
     auto duration = duration_cast<microseconds> (stopTime - startTime); 
