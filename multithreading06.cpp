@@ -28,10 +28,10 @@ int MyMoney = 0;
 std::timed_mutex m;
 void increament(int i){
     
-    if(m.try_lock_for(std::chrono::seconds(3))){                        //Tweak these timings
+    if(m.try_lock_for(std::chrono::seconds(2))){                        //Tweak these timings
         // critical section
         MyMoney++;
-        std::this_thread::sleep_for(std::chrono::seconds(2));           //Tweak these timings
+        std::this_thread::sleep_for(std::chrono::seconds(1));           //Tweak these timings
         cout<< "Thread "<< i<< "Entered "<< endl;
     }
     else{
@@ -45,9 +45,12 @@ int main(){
 
     std::thread t1(increament, 1);
     std::thread t2(increament, 2);
+    std::this_thread::sleep_for(std::chrono::seconds(1)); 
+    std::thread t3(increament, 3);
 
     t1.join();
     t2.join();
+    t3.join();
 
     cout<< "Number of threads entered critical section: "<< MyMoney<< endl;
 
