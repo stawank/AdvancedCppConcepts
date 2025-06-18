@@ -27,8 +27,8 @@ Timed Mutex:alignas
 int MyMoney = 0;
 std::timed_mutex m;
 void increament(int i){
-    
-    if(m.try_lock_for(std::chrono::seconds(2))){                        //Tweak these timings
+    auto now = std::chrono::steady_clock::now();
+    if(m.try_lock_until(now+ std::chrono::seconds(2))){                        //Tweak these timings
         // critical section
         MyMoney++;
         std::this_thread::sleep_for(std::chrono::seconds(1));           //Tweak these timings
