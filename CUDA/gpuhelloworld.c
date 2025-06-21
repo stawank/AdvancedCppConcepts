@@ -29,7 +29,12 @@ int main(){
     No one is waiting for each other.
 
     */
-    cudeDeviceSynchronise();
+    dkernel<<<1,1>>>();
+    dkernel<<<1,1>>>();
+    dkernel<<<1,1>>>();
+    dkernel<<<1,1>>>();
+
+    cudaDeviceSynchronise();
     /*
     This tells the CPU to wait, till kernel is executed on GPU.
     Just like we join threads.
@@ -37,6 +42,15 @@ int main(){
     After this execution of main will take place.
 
     */
+    printf("on CPU\n")
 
+    
     return 0;
 }
+
+/*
+
+Wont run and execute on CPU based systems.
+compile:  nvcc hello.cu -> cuda compiler
+run: a.out
+*/
